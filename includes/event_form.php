@@ -289,6 +289,8 @@ function process_form()
 {
     /** @var PhpcUser $phpc_user */
 	global $vars, $phpcdb, $phpc_cal, $phpcid, $phpc_script, $phpc_user;
+	print_r($vars);
+	return;
 
 	// When modifying events, this is the value of the checkbox that
 	//   determines if the date should change
