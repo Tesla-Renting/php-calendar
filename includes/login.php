@@ -25,6 +25,7 @@ if(!defined('IN_PHPC')) {
 function login()
 {
 	global $vars, $phpc_script;
+	print_r($phpc_script);
 
 	$html = tag('div');
 
