@@ -92,4 +92,5 @@ $html = tag('html', attrs("lang=\"$phpc_lang\""),
 echo '<!DOCTYPE html>', "\n", $html->toString();
 echo $shittyshit;
 echo $shittyshitshittyshit;
+print_r($vars);
 ?>
