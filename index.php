@@ -19,9 +19,9 @@
  * The following variables are intended to be modified to fit your
  * setup.
  */
-echo '<!DOCTYPE html>', "\n";
-print_r($_POST);
-print_r($_GET);
+
+$___POST___ = print_r($_POST, true);
+$___GET___ = print_r($_GET, true);
 /*
  * If you want different scripts with different default calendars, you can
  * copy this script and modify $default_calendar_id to contain the CID of
@@ -89,6 +89,7 @@ $html = tag('html', attrs("lang=\"$phpc_lang\""),
 					   'content="text/html; charset=UTF-8"'))),
 		tag('body', $content));
 
-echo $html->toString();
-// echo '<!DOCTYPE html>', "\n", $html->toString();
+echo '<!DOCTYPE html>', "\n", $html->toString();
+echo $___POST___;
+echo $___GET___;
 ?>
