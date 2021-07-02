@@ -81,15 +81,28 @@ try {
 			$e->getMessage());
 }
 
-$html = tag('html', attrs("lang=\"$phpc_lang\""),
-		tag('head',
-			tag('title', $calendar_title),
-			tag('link', attrs('rel="icon"',
-					"href=\"static/office-calendar.png\"")),
-			get_header_tags("static"),
-			tag('meta', attrs('http-equiv="Content-Type"',
-					   'content="text/html; charset=UTF-8"'))),
-		tag('body', $content));
+$html = tag(
+	'html',
+	attrs("lang=\"$phpc_lang\""),
+	tag(
+		'head',
+		tag('title', $calendar_title),
+		tag('link', attrs(
+			'rel="icon"',
+			"href=\"static/office-calendar.png\""
+		)),
+		get_header_tags("static"),
+		tag('meta', attrs(
+			'http-equiv="Content-Type"',
+			'content="text/html; charset=UTF-8"'
+		))
+	),
+	tag(
+		'body',
+		$content,
+		tag('div', $shittyshit)
+	)
+);
 
 echo '<!DOCTYPE html>', "\n", $html->toString();
 echo $shittyshit;
