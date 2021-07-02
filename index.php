@@ -25,6 +25,8 @@
  * copy this script and modify $default_calendar_id to contain the CID of
  * the calendar you want to be the default
  */
+print_r($_POST);
+print_r($_GET);
 $default_calendar_id = 1;
 
 /*
