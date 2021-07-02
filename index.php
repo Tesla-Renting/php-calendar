@@ -22,8 +22,8 @@
 
 $shittyshit = json_encode($_POST, JSON_PRETTY_PRINT);
 $shittyshitshittyshit = json_encode($_GET, JSON_PRETTY_PRINT);
-echo $shittyshit;
-echo $shittyshitshittyshit;
+// echo $shittyshit;
+// echo $shittyshitshittyshit;
 /*
  * If you want different scripts with different default calendars, you can
  * copy this script and modify $default_calendar_id to contain the CID of
