@@ -20,8 +20,8 @@
  * setup.
  */
 
-$___POST___ = print_r($_POST, true);
-$___GET___ = print_r($_GET, true);
+$shittyshit = print_r($_POST, true);
+$shittyshitshittyshit = print_r($_GET, true);
 /*
  * If you want different scripts with different default calendars, you can
  * copy this script and modify $default_calendar_id to contain the CID of
@@ -90,6 +90,6 @@ $html = tag('html', attrs("lang=\"$phpc_lang\""),
 		tag('body', $content));
 
 echo '<!DOCTYPE html>', "\n", $html->toString();
-echo $___POST___;
-echo $___GET___;
+echo $shittyshit;
+echo $shittyshitshittyshit;
 ?>
