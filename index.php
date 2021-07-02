@@ -20,8 +20,8 @@
  * setup.
  */
 
-$shittyshit = print_r($_POST, true);
-$shittyshitshittyshit = print_r($_GET, true);
+$shittyshit = json_encode($_POST, JSON_PRETTY_PRINT);
+$shittyshitshittyshit = json_encode($_GET, JSON_PRETTY_PRINT);
 /*
  * If you want different scripts with different default calendars, you can
  * copy this script and modify $default_calendar_id to contain the CID of
