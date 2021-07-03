@@ -31,11 +31,19 @@ function importics()
         exit;
     }
 
+    $printval = "";
+    $iCal = new iCal($_FILES['icsfile']['tmp_name']);
+    $events = $iCal->events();
+    foreach ($events as $event) {
+        $title = $event->title();
+        $start = $event->dateStart;
+        $end = $event->dateEnd;
+        $printval .= "start: {$start}, end: {$end}, title: {$title}";
+    }
+
     $form_page = "$phpc_script?action=admin#phpc-admin-import-ics";
     return message_redirect(
-        "name of uploaded file: {$_FILES['icsfile']['name']}"
-            . "<br>"
-            . "temp file: {$_FILES['icsfile']['tmp_name']}",
+        $printval,
         $form_page
     );
 }
