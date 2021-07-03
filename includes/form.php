@@ -393,6 +393,31 @@ class FormSubmitButton extends FormQuestion
     }
 }
 
+/* creates an upload button
+ */
+
+class FormFileButton extends FormQuestion
+{
+    var $title;
+
+    function __construct($title = false)
+    {
+        parent::__construct(false, false, false);
+        $this->title = $title;
+        $this->class .= " form-file";
+    }
+
+    protected function get_specific_html($parent, $defaults)
+    {
+        $attrs = attrs('type="file"');
+        if ($this->title !== false) {
+            $attrs->add("value=\"{$this->title}\"");
+        }
+        return tag('div', attrs("class=\"{$this->class}\""),
+            tag('input', $attrs));
+    }
+}
+
 /* this class is for questions where depending on the answer you need
  * to answer more questions
  */
@@ -578,13 +603,15 @@ class Form extends FormGroup
     var $action;
     var $method;
     var $hidden = array();
+    var $enctype;
 
-    function __construct($action, $title = false, $method = false)
+    function __construct($action, $title = false, $method = false, $enctype = false)
     {
         parent::__construct($title);
         $this->action = $action;
         $this->method = $method;
         $this->class .= " form";
+        $this->enctype = $enctype;
     }
 
     function get_form($defaults = array())
@@ -593,6 +620,9 @@ class Form extends FormGroup
             'method="POST"');
         if ($this->method !== false) {
             $form_attrs->add("method=\"{$this->method}\"");
+        }
+        if ($this->enctype !== false) {
+            $form_attrs->add("enctype=\"{$this->enctype}\"");
         }
         $table = tag('table', attrs("class=\"{$this->class}\""));
         foreach ($this->list as $child) {

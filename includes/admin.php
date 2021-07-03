@@ -38,6 +38,8 @@ function admin() {
 					__('Users'))),
 			tag('li', tag('a', attrs('href="#phpc-admin-import"'),
 					__('Import'))),
+			tag('li', tag('a', attrs('href="#phpc-admin-import-ics"'),
+					__('Import iCalendar'))),
 			tag('li', tag('a', attrs('href="#phpc-admin-translate"'),
 					__('Translate'))));
 
@@ -45,7 +47,7 @@ function admin() {
 			__('Version') . ": $phpc_version");
 
 	return tag('', tag('div', attrs('class="phpc-tabs"'), $menu,
-				calendar_list(), user_list(), import(),
+				calendar_list(), user_list(), import(), importics(),
 				translation_link()), $version);
 }
 
@@ -155,6 +157,24 @@ function import() {
 
 	return tag('div', attrs('id="phpc-admin-import"'),
 			$form->get_form($defaults));
+}
+
+/**
+ * @return Html
+ */
+function importics() {
+    global $phpc_script;
+
+	$form = new Form($phpc_script, __('Import iCalendar Form'), false, "multipart/form-data");
+	$form->add_part(new FormFileButton());
+
+	$form->add_hidden('action', 'importics');
+	$form->add_hidden('submit_form', 'submit_form');
+
+	$form->add_part(new FormSubmitButton(__("Import iCalendar file")));
+
+	return tag('div', attrs('id="phpc-admin-import-ics"'),
+			$form->get_form());
 }
 
 /**
