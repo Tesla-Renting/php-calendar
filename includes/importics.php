@@ -31,7 +31,7 @@ function importics()
         exit;
     }
 
-    $form_page = "$phpc_script?action=admin#phpc-import-ics";
+    $form_page = "$phpc_script?action=admin#phpc-admin-import-ics";
     return message_redirect(
         "good!",
         $form_page
