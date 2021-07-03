@@ -20,7 +20,7 @@ if (!defined('IN_PHPC')) {
 }
 
 // https://gist.github.com/29eafb3b3688fa49546bc14ec434a77c.git
-include "{$phpc_root_path}/../importerics/iCal.php";
+include "../importerics/iCal.php";
 
 function importics()
 {
