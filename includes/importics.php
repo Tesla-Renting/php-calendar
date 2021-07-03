@@ -24,26 +24,57 @@ include "../importerics/iCal.php";
 
 function importics()
 {
-    global $vars, $phpcdb, $phpcid, $phpc_script;
+    global $vars, $phpcdb, $phpcid, $phpc_script, $phpc_user;;
 
     if (!is_admin()) {
         permission_error(__('Need to be admin'));
         exit;
     }
 
-    $printval = "";
+    $eventcountsuccess = 0;
+    $eventcountfail = 0;
     $iCal = new iCal($_FILES['icsfile']['tmp_name']);
     $events = $iCal->events();
     foreach ($events as $event) {
-        $title = $event->title();
-        $start = $event->dateStart;
-        $end = $event->dateEnd;
-        $printval .= "start: {$start}, end: {$end}, title: {$title}";
+
+        $startDateTime = $event->dateStart;
+        $endDateTime = $event->dateEnd;
+        
+        $start_dt = DateTime::createFromFormat('Y-m-d H:i:s', $startDateTime);
+        $end_dt = DateTime::createFromFormat('Y-m-d H:i:s', $endDateTime);
+        if ($start_dt == false) {
+            $eventcountfail++;
+            continue;
+        }
+        if ($end_dt == false) {
+            $eventcountfail++;
+            continue;
+        }
+        
+        $start_ts = $start_dt->getTimestamp();
+        $end_ts = $end_dt->getTimestamp();
+        $time_type = 0;
+        
+        if ($start_ts > $end_ts) {
+            $eventcountfail++;
+            continue;
+        }
+        
+        $eid = $phpcdb->create_event(
+            $phpcid,
+            $phpc_user->get_uid(),
+            $event->title(),
+            $event->description(),
+            false
+        );
+
+        $phpcdb->create_occurrence($eid, $time_type, $start_ts, $end_ts);
+        $eventcountsuccess++;
     }
 
     $form_page = "$phpc_script?action=admin#phpc-admin-import-ics";
     return message_redirect(
-        $printval,
+        "{$eventcountsuccess} events imported successfully. {$eventcountfail} events not imported.",
         $form_page
     );
 }
