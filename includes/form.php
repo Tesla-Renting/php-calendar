@@ -400,19 +400,15 @@ class FormFileButton extends FormQuestion
 {
     var $title;
 
-    function __construct($title = false)
+    function __construct($qid = "fileToUpload", $subject = false, $description = "Local file")
     {
-        parent::__construct(false, false, false);
-        $this->title = $title;
+        parent::__construct($qid, $subject, $description);
         $this->class .= " form-file";
     }
 
     protected function get_specific_html($parent, $defaults)
     {
         $attrs = attrs('type="file"');
-        if ($this->title !== false) {
-            $attrs->add("value=\"{$this->title}\"");
-        }
         return tag('div', attrs("class=\"{$this->class}\""),
             tag('input', $attrs));
     }
