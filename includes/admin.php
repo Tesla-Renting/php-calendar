@@ -166,7 +166,7 @@ function importics() {
     global $phpc_script;
 
 	$form = new Form($phpc_script, __('Import iCalendar Form'), false, "multipart/form-data");
-	$form->add_part(new FormFileButton("icsfile", false, "Local iCalendar File"));
+	$form->add_part(new FormFileButton("icsfile", "Local iCalendar File", false));
 
 	$form->add_hidden('action', 'importics');
 	$form->add_hidden('submit_form', 'submit_form');
