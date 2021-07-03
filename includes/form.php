@@ -409,6 +409,8 @@ class FormFileButton extends FormQuestion
     protected function get_specific_html($parent, $defaults)
     {
         $attrs = attrs('type="file"');
+        $attrs->add("name=\"{$this->qid}\"");
+        $attrs->add("id=\"{$this->qid}\"");
         return tag('div', attrs("class=\"{$this->class}\""),
             tag('input', $attrs));
     }
