@@ -33,7 +33,7 @@ function importics()
 
     $form_page = "$phpc_script?action=admin#phpc-admin-import-ics";
     return message_redirect(
-        "name of uploaded file: {$_FILES['icsfile']['name']}",
+        print_r($_REQUEST, true),
         $form_page
     );
 }
