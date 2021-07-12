@@ -86,12 +86,6 @@ if(empty($_SESSION["{$phpc_prefix}uid"])) {
 if(empty($phpc_token))
 	$phpc_token = '';
 
-// Create vars
-if(get_magic_quotes_gpc()) {
-	$_GET = stripslashes_r($_GET);
-	$_POST = stripslashes_r($_POST);
-}
-
 $vars = array_merge(real_escape_r($_GET), real_escape_r($_POST));
 
 // Find an appropriate calendar id
